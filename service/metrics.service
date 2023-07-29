@@ -1,0 +1,7 @@
+[Unit]
+Description=Record metrics
+
+[Service]
+Type=simple
+User=volvo
+ExecStart=python /home/volvo/blackbox/src || true

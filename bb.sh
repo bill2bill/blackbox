@@ -1,0 +1,1 @@
+make run path="$1"

@@ -1,0 +1,10 @@
+[Unit]
+Description=File upload
+
+[Service]
+Type=simple
+User=volvo
+ExecStart=/bin/bash /home/volvo/blackbox/upload.sh || true
+
+[Install]
+WantedBy=multi-user.target
