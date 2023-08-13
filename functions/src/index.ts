@@ -10,7 +10,7 @@ import * as moment from 'moment'
 import * as Papa from 'papaparse';
 
 const options: ScheduleOptions = {
-    schedule: "every 2 hours from 4:00 to 22:00",
+    schedule: "every 1 hours from 4:00 to 22:00",
     region: "europe-west1",
     memory: "512MiB"
 }
@@ -76,13 +76,13 @@ exports.ingest = onSchedule(options, async () => {
                     // File not yet uploaded
                     const data = await files[i].download();
                     const raw = data.toString()
-                    // const options = {header: true, transformHeader: transform_header}
                     const csv: string[][] = Papa.parse<string[]>(raw).data;
                     const len = csv.length
+                    const last_row = csv.at(-5)
 
-                    if (len > 900) {
+                    if (len > 6 && last_row && last_row.length > 3 && parseInt(last_row[2]) >= 231100) {
                         // File has got to approx midnight
-                        
+
                         for (let i = 0; i < len; i++) {
                             const row = csv[i]
                             if (row.length == 15) {
