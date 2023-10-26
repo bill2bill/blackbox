@@ -12,7 +12,9 @@ import * as Papa from 'papaparse';
 const options: ScheduleOptions = {
     schedule: "every 1 hours from 4:00 to 22:00",
     region: "europe-west1",
-    memory: "512MiB"
+    memory: "2GiB",
+    cpu: 2,
+    timeoutSeconds: 60 * 30
 }
 
 const app: App = initializeApp();
